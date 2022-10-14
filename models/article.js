@@ -39,7 +39,7 @@ articleSchema.pre("validate", function (next) {
     }
 
     if (this.markdown) {
-        const config = { ALLOWED_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] };
+        const config = { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] };
         this.sanitizedHtml = dompurify.sanitize(marked.parse(this.markdown), config);
     }
     
