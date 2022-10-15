@@ -1,20 +1,13 @@
-<div class="modal fade" id="modal<%= article.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Post löschen</h5>
-            </div>
-            <div class="modal-body">
-                <p>
-                    Wollen Sie <b>"<%= article.title %>"</b> wirklich löschen ?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x"></i> Abbrechen</button>
-                <a href="/articles/delete/<%= article.id %>" class="btn btn-danger">
-                    <i class="bi bi-trash"></i> Löschen
-                </a>
-            </div>
-        </div>
+<dialog class="mdl-dialog" id="dialog_<%=article.id%>">
+    <h4 class="mdl-dialog__title">Post löschen</h4>
+    <div class="mdl-dialog__content">
+      <p>
+        Wollen Sie <b>"<%= article.title %>"</b> wirklich löschen ?
+      </p>
     </div>
-</div>
+    <div class="mdl-dialog__actions">
+      <a href="/articles/delete/<%= article.id %>" class="mdl-button mdl-button--accent">Ja</a>
+      <button type="button" class="mdl-button close">Nein</button>
+    </div>
+  </dialog>
+  

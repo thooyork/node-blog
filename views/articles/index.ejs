@@ -1,67 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/icons/bootstrap-icons.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/material.min.css" />
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
     <title>Blog</title>
-</head>
+  </head>
 
-<body>
-    <div class="container">
-        <div class="d-flex my-4">
-            <h1 class="card-title" style="width:100%">
-                Alle Blog Posts
-            </h1>
-            <div class="ml-auto" style="white-space: nowrap;">
-                <a href="/articles/new" class="btn btn-success"><i class="bi bi-star"></i> Post erstellen</a>
-            </div>
+  <body>
+    <div class="page-content">
+      <div style="width: 100%; padding: 1rem">
+        <h1>Alle Blog Posts</h1>
+        <a
+          href="/articles/new"
+          class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-new"
+        >
+          <i class="material-icons">add</i>
+        </a>
+      </div>
+
+      <% articles.forEach(article=> { %>
+
+      <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+        <div class="mdl-card__content card-170">
+          <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text"><%= article.title %></h2>
+          </div>
+          <div class="mdl-card__supporting-text">
+            <%= article.description %>
+          </div>
         </div>
+        <div class="mdl-card__actions mdl-card--border">
+          <a
+            href="/articles/<%= article.slug %>"
+            class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect pull-left"
+          >
+            Lesen ...
+          </a>
+          <span style="float:right; margin-top:1rem" class="pull-right date"
+            ><%= article.createdAt.toLocaleDateString()%></span
+          >
+        </div>
+        <div class="mdl-card__menu">
+          <a
+            href="/articles/edit/<%= article.id %>"
+            class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
+          >
+            <i class="material-icons">edit</i>
+          </a>
 
-        <% articles.forEach(article=> { %>
+          <a
+            href="#"
+            onclick="openDialog('dialog_<%=article.id%>')"
+            class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
+          >
+            <i class="material-icons">delete</i>
+          </a>
 
-            <div class="card mt-4">
-                <div class="card-body">
-                    <div class="d-flex">
-                        <h1 class="card-title mr-auto" style="width:100%">
-                            <%= article.title %>
-                        </h1>
-                        <div class="card-subtitle text-muted mb-2 small">
-                            <%= article.createdAt.toLocaleDateString() %>
-                        </div>
-                    </div>
-                    <div class="card-text mb-2 text-muted">
-                        <%= article.description %>
-                    </div>
+          <%- include("_modal", {article: article}) %>
+        </div>
+      </div>
 
-                    <div class="d-flex">
-                        <div class="mr-auto" style="width:100%">
-                            <a href="/articles/<%= article.slug %>" class="btn btn-primary">
-                                <i class="bi bi-chat-dots"></i> Zum Post
-                            </a>
-                        </div>
-                        <div style="white-space: nowrap;">
-                            <a href="/articles/edit/<%= article.id %>" class="btn btn-info">
-                                <i class="bi bi-pen"></i> Bearbeiten
-                            </a>
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#modal<%= article.id %>">
-                                <i class="bi bi-trash"></i> Löschen
-                            </button>
-
-                            <!-- Modal -->
-                            <%- include("_modal", {article: article}) %>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <% })%>
+      <% })%>
     </div>
-</body>
-<script src="/js/bootstrap.min.js"></script>
+  </body>
+  <script src="/static/material.min.js"></script>
+  <script>
+    function openDialog(id) {
+      console.log(id);
+      const dialog = document.querySelector("#" + id);
+      if (!dialog.showModal) {
+        dialogPolyfill.registerDialog(dialog);
+      }
 
+      dialog.showModal();
+
+      dialog.querySelector(".close").addEventListener("click", function () {
+        dialog.close();
+      });
+    }
+  </script>
 </html>

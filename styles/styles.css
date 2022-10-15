@@ -1,0 +1,41 @@
+.page-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 26rem;
+}
+
+.demo-card-wide.mdl-card {
+  width: 100%;
+  height:auto;
+  margin: 1rem;
+}
+
+.card-170 {
+    height:170px;
+}
+
+
+.demo-card-wide > .mdl-card__title {
+  color: #555;
+  background: url("../assets/demos/welcome_card.jpg") center / cover;
+}
+
+.mdl-card__supporting-text {
+  color: #aaa;
+}
+.demo-card-wide > .mdl-card__menu {
+}
+
+.button-new {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  background-color: rgb(255, 196, 0) !important;
+}
+
+.date {
+    color: #666;
+    font-size: 12px;
+}
