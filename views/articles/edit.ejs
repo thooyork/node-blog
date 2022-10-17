@@ -9,15 +9,29 @@
     <title>Blog - Post bearbeiten</title>
   </head>
 
-  <body>
+  <body class="gradient-bg">
     <div class="page-content">
-      <div style="width: 100%; padding: 1rem">
+      <!-- <div style="width: 100%; padding: 1rem">
         <h1>Post bearbeiten</h1>
 
         <form action="/articles/<%= article.id %>" method="POST">
           <%- include("_form_fields") %>
         </form>
+      </div> -->
+
+      <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+        <div class="mdl-card__content">
+          <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Post bearbeiten</h2>
+          </div>
+          <div style="padding:1rem">
+            <form action="/articles/<%= article.id %>" method="POST">
+              <%- include("_form_fields") %>
+            </form>
+          </div>
+        </div>
       </div>
+
     </div>
   </body>
   <script src="/static/material.min.js"></script>

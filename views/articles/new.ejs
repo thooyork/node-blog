@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/static/material.min.css" />
-    <link rel="stylesheet" href="/styles/styles.css" />
-    <title>Blog - Neuer Post</title>
-  </head>
 
-  <body>
-    <div class="page-content">
-      <div style="width: 100%; padding: 1rem">
-        <h1>Post erstellen</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/static/material.min.css" />
+  <link rel="stylesheet" href="/styles/styles.css" />
+  <title>Blog - Neuer Post</title>
+</head>
 
-        <form action="/articles" method="POST">
-          <%- include("_form_fields") %>
-        </form>
+<body class="gradient-bg">
+  <div class="page-content">
+    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__content">
+        <div class="mdl-card__title">
+          <h2 class="mdl-card__title-text">Post erstellen</h2>
+        </div>
+        <div style="padding:1rem">
+          <form action="/articles" method="POST">
+            <%- include("_form_fields") %>
+          </form>
+        </div>
       </div>
     </div>
-  </body>
-  <script src="/static/material.min.js"></script>
+  </div>
+</body>
+<script src="/static/material.min.js"></script>
+
 </html>
