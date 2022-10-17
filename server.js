@@ -24,7 +24,7 @@ app.use('/static', express.static(path.join(__dirname, 'node_modules/material-de
 
 
 app.get("/", async (req, res) => {
-    const articles = await Article.find().sort({ createdAt: "desc" });
+    const articles = await Article.find().sort({ updatedAt: "desc" });
     res.render("articles/index", { articles: articles })
 })
 

@@ -32,6 +32,7 @@ router.post("/:id", async (req, res) => {
     article.title = req.body.title;
     article.description = req.body.description;
     article.markdown = req.body.markdown;
+    article.updatedAt = Date.now();
 
     try {
         article = await article.save();

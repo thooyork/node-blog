@@ -36,7 +36,7 @@
   z-index: 99;
   right: 27rem;
   top: 6rem;
-  background-color: #f16d0e !important;
+  background-color: #a8ec78 !important;
 }
 
 .date {
@@ -69,13 +69,14 @@
 }
 
 .gradient-bg {
-  background: #2c3e50; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom, #3498db, #2c3e50); /* Chrome 10-25, Safari 5.1-6 */
+  /* background: #2c3e50; 
+  background: -webkit-linear-gradient(to bottom, #3498db, #2c3e50);
   background: linear-gradient(
     to bottom,
     #3498db,
     #2c3e50
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  );  */
+  background-image: linear-gradient( 135deg, #3B2667 10%, #BC78EC 100%);
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
@@ -91,10 +92,7 @@
   }
 
   .button-new {
-    position: fixed;
-    z-index: 99;
     right: 3rem;
     top: 6rem;
-    background-color: #f16d0e !important;
   }
 }

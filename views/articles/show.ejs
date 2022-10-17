@@ -40,9 +40,17 @@
           </div>
         </div>
         <div class="mdl-card__actions mdl-card--border">
-          <span style="float:right; margin-top:1rem" class="pull-right date"
-            ><%= article.createdAt.toLocaleDateString()%></span
-          >
+          <span style="float:right; margin-top:1rem" class="pull-right date">erstellt: <%=
+            article.createdAt.toLocaleDateString()%>
+            <%= article.createdAt.toLocaleTimeString([], {hour: '2-digit' , minute:'2-digit'})%></span>
+
+
+        <% if(Date.parse(article.createdAt) !==Date.parse(article.updatedAt)) { %>
+          <span style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span style="float:right; margin-top:1rem" class="pull-right date">geändert: <%=
+              article.updatedAt.toLocaleDateString()%>
+              <%= article.updatedAt.toLocaleTimeString([], {hour: '2-digit' , minute:'2-digit'})%></span>
+        <% } %>
         </div>
         <div class="mdl-card__menu">
           <a
