@@ -1,5 +1,4 @@
 
-const moment = require("moment");
 const express = require("express");
 const mongoose = require("mongoose");
 const articleRouter = require("./routes/articles");
@@ -15,10 +14,6 @@ mongoose.connect("mongodb://localhost/blog", {
 app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: false }));
-// app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')));
-// app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')));
-// app.use('/icons', express.static(path.join(__dirname, 'node_modules/bootstrap-icons/font')));
-
 app.use('/styles', express.static(path.join(__dirname, '/styles')));
 app.use('/static', express.static(path.join(__dirname, 'node_modules/material-design-lite/')));
 
