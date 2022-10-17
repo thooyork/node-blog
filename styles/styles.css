@@ -6,6 +6,10 @@
   padding: 2rem 26rem;
 }
 
+.maintitle {
+  color: #fafafa;
+}
+
 .demo-card-wide.mdl-card {
   width: 100%;
   height: auto;
@@ -29,9 +33,10 @@
 
 .button-new {
   position: fixed;
-  right: 2rem;
-  bottom: 2rem;
-  background-color: #F16D0E !important;
+  z-index: 99;
+  right: 27rem;
+  top: 6rem;
+  background-color: #f16d0e !important;
 }
 
 .date {
@@ -64,9 +69,32 @@
 }
 
 .gradient-bg {
-  background: #2c3e50;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom, #3498db, #2c3e50);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, #3498db, #2c3e50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #2c3e50; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #3498db, #2c3e50); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #3498db,
+    #2c3e50
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+
+
+@media screen and (max-width: 1280px) {
+  .page-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .button-new {
+    position: fixed;
+    z-index: 99;
+    right: 3rem;
+    top: 6rem;
+    background-color: #f16d0e !important;
+  }
 }

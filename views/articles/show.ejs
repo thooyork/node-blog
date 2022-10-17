@@ -15,8 +15,9 @@
 
   <body class="gradient-bg">
     <div class="page-content">
+
       <div style="width: 100%; padding: 1rem">
-        
+        <h1 class="maintitle"><%= article.title %></h1>
         <a
           href="/"
           class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-new"
@@ -28,9 +29,9 @@
     
       <div class="demo-card-wide mdl-card mdl-shadow--2dp">
         <div class="mdl-card__content">
-          <div class="mdl-card__title">
+          <!-- <div class="mdl-card__title">
             <h2 class="mdl-card__title-text"><%= article.title %></h2>
-          </div>
+          </div> -->
           <div class="mdl-card__supporting-text">
             <%= article.description %>
           </div>
@@ -39,12 +40,6 @@
           </div>
         </div>
         <div class="mdl-card__actions mdl-card--border">
-          <!-- <a
-            href="/articles/<%= article.slug %>"
-            class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect pull-left"
-          >
-            Lesen ...
-          </a> -->
           <span style="float:right; margin-top:1rem" class="pull-right date"
             ><%= article.createdAt.toLocaleDateString()%></span
           >
