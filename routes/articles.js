@@ -31,7 +31,7 @@ router.get("/:slug", async (req, res) => {
 router.get("/pdf/:id", async (req, res) => {
     const article = await Article.findById(req.params.id);
     const md = `# ${article.title}\n ${article.markdown}`;
-    const filename = article.slug;
+    const filename = article.slug.length <= 50 ? article.slug : article.slug.substring(0, 50);
 
     markdownpdf().from.string(md).to.buffer({}, (err, buffer) => {
         if (err) {

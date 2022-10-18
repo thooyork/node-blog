@@ -41,8 +41,8 @@ h6 {
   margin: 1rem;
 }
 
-.card-170 {
-  height: 170px;
+.card-minHeight {
+  min-height: 150px;
 }
 
 .mdl-card__title {
@@ -114,6 +114,10 @@ h6 {
 .dialog-confirm {
   width: auto !important;
   max-width: 30vw !important;
+}
+
+img[alt="imgwide"] {
+  width:100%;
 }
 
 @media screen and (max-width: 1280px) {
