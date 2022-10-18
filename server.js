@@ -16,6 +16,7 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 app.use('/styles', express.static(path.join(__dirname, '/styles')));
 app.use('/static', express.static(path.join(__dirname, 'node_modules/material-design-lite/')));
+app.use('/assets', express.static(path.join(__dirname, '/assets')));
 
 
 app.get("/", async (req, res) => {

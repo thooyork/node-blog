@@ -1,13 +1,38 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("./../assets/fonts/Montserrat-Regular.ttf");
+}
+
 .page-content {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   padding: 2rem 26rem;
+  font-family: "Montserrat", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat", sans-serif;
 }
 
 .maintitle {
-  color: #fafafa;
+  color: rgb(187, 187, 187);
+  font-family: "Montserrat", sans-serif;
+  width:calc(100% - 150px);
+  padding:0;
+  margin:0 0 2rem 0;
+}
+
+.logo {
+  width: 50px;
+  height: 65px;
+  margin: 7px 2rem 0 0;
 }
 
 .demo-card-wide.mdl-card {
@@ -20,15 +45,21 @@
   height: 170px;
 }
 
-.demo-card-wide > .mdl-card__title {
-  color: #555;
-  background: url("../assets/demos/welcome_card.jpg") center / cover;
+.mdl-card__title {
+  /* background: #FF9900; */
+  /* background-color:red; */
+  /* background: url("./../assets/demos/welcome_card.jpg") center / cover; */
+}
+
+.mdl-card__title-text {
+  width:calc(100% - 100px);
+  font-family: "Montserrat", sans-serif;
+  /* color: #FFF!important; */
+  color: rgb(109, 109, 109);
 }
 
 .mdl-card__supporting-text {
-  color: #aaa;
-}
-.demo-card-wide > .mdl-card__menu {
+  color: rgb(109, 109, 109);
 }
 
 .button-new {
@@ -36,11 +67,12 @@
   z-index: 99;
   right: 27rem;
   top: 6rem;
-  background-color: #a8ec78 !important;
+  color: #01544e !important;
+  background-color: #02d9c4 !important;
 }
 
 .date {
-  color: #666;
+  color: rgb(187, 187, 187);
   font-size: 12px;
 }
 
@@ -69,18 +101,16 @@
 }
 
 .gradient-bg {
-  /* background: #2c3e50; 
-  background: -webkit-linear-gradient(to bottom, #3498db, #2c3e50);
-  background: linear-gradient(
-    to bottom,
-    #3498db,
-    #2c3e50
-  );  */
-  background-image: linear-gradient( 135deg, #3B2667 10%, #BC78EC 100%);
+  background: rgb(0, 0, 0);
+  background: linear-gradient(125deg, rgba(0, 0, 0, 1) 0%, rgba(34, 34, 34, 1) 52%, rgba(68, 68, 68, 1) 100%);
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
 
+.dialog-confirm {
+  width: auto !important;
+  max-width: 30vw !important;
+}
 
 @media screen and (max-width: 1280px) {
   .page-content {
@@ -95,4 +125,16 @@
     right: 3rem;
     top: 6rem;
   }
+}
+
+@media screen and (max-width: 960px) {
+  .dialog-confirm {
+    width: auto !important;
+    max-width: 80vw !important;
+  }
+}
+
+.mdl-button--fmx,
+.mdl-button--accent {
+  color: #ff9900 !important;
 }

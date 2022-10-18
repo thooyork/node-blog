@@ -14,7 +14,10 @@
 <body class="gradient-bg">
   <div class="page-content">
     <div style="width: 100%; padding: 1rem">
-      <h1 class="maintitle">Alle Blog Posts</h1>
+      <div style="display: flex; align-items:start; justify-content:start; align-self:center;">
+        <img src="/assets/images/logo-transparent.png" class="logo"/>
+        <h1 class="maintitle" style="display: inline-flex;">Blog</h1>
+      </div>
       <a href="/articles/new"
         class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-new">
         <i class="material-icons">add</i>
@@ -36,7 +39,7 @@
         </div>
         <div class="mdl-card__actions mdl-card--border">
           <a href="/articles/<%= article.slug %>"
-            class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect pull-left">
+            class="mdl-button mdl-button--colored mdl-button--fmx mdl-js-button mdl-js-ripple-effect pull-left">
             Lesen ...
           </a>
           <span style="float:right; margin-top:1rem" class="pull-right date">erstellt: <%=

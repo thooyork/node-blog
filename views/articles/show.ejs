@@ -15,9 +15,10 @@
   <div class="page-content">
 
     <div style="width: 100%; padding: 1rem">
-      <h1 class="maintitle">
-        <%= article.title %>
-      </h1>
+      <div style="display: flex; align-items:center start; justify-content:start; align-self:center">
+        <img src="/assets/images/logo-transparent.png" class="logo"/>
+        <h1 class="maintitle" style="display: inline-flex"><%= article.title %></h1>
+      </div>
       <a href="/" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-new">
         <i class="material-icons">arrow_back</i>
       </a>
