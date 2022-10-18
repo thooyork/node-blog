@@ -5,6 +5,7 @@ const articleRouter = require("./routes/articles");
 const Article = require("./models/article");
 const path = require("path");
 const app = express();
+const luxon = require("luxon");
 
 mongoose.connect("mongodb://localhost/blog", {
     useNewUrlParser: true,
@@ -21,7 +22,7 @@ app.use('/assets', express.static(path.join(__dirname, '/assets')));
 
 app.get("/", async (req, res) => {
     const articles = await Article.find().sort({ updatedAt: "desc" });
-    res.render("articles/index", { articles: articles })
+    res.render("articles/index", { articles: articles, luxon: luxon })
 })
 
 app.use("/articles", articleRouter);

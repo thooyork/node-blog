@@ -42,16 +42,17 @@
             class="mdl-button mdl-button--colored mdl-button--fmx mdl-js-button mdl-js-ripple-effect pull-left">
             Lesen ...
           </a>
-          <span style="float:right; margin-top:1rem" class="pull-right date">erstellt: <%=
-              article.createdAt.toLocaleDateString()%>
-              <%= article.createdAt.toLocaleTimeString([], {hour: '2-digit' , minute:'2-digit'})%></span>
+
+          <span style="float:right; margin-top:1rem" class="pull-right date">erstellt: <%= luxon.DateTime.fromJSDate(article.createdAt).toRelativeCalendar() %>
+              <%= article.createdAt.toLocaleTimeString([], {hour: '2-digit' , minute:'2-digit'})%> h
+            </span>
 
 
           <% if(Date.parse(article.createdAt) !==Date.parse(article.updatedAt)) { %>
             <span style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span style="float:right; margin-top:1rem" class="pull-right date">geändert: <%=
-                article.updatedAt.toLocaleDateString()%>
-                <%= article.updatedAt.toLocaleTimeString([], {hour: '2-digit' , minute:'2-digit'})%></span>
+            <span style="float:right; margin-top:1rem" class="pull-right date">geändert: <%= luxon.DateTime.fromJSDate(article.updatedAt).toRelativeCalendar() %>
+                <%= article.updatedAt.toLocaleTimeString([], {hour: '2-digit' , minute:'2-digit'})%> h
+              </span>
           <% } %>
 
 
