@@ -27,7 +27,7 @@
     <% articles.forEach(article=> { %>
 
       <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-        <div class="mdl-card__content card-minHeight">
+        <div class="mdl-card__content card-minHeight" style="cursor:pointer" onclick="window.location.href = '/articles/<%= article.slug %>'">
           <div class="mdl-card__title">
             <h2 class="mdl-card__title-text">
               <%= article.title.length <= 78 ? article.title : article.title.substring(0,78).concat(" ...") %>
