@@ -1,45 +1,22 @@
-<div
-  class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
-  style="width: 100%"
->
-  <input
-    class="mdl-textfield__input"
-    type="text"
-    id="title"
-    name="title"
-    value="<%= article.title %>"
-  />
-  <label class="mdl-textfield__label" for="title">Titel</label>
+<div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%">
+    <input class="mdl-textfield__input" type="text" id="title" name="title" value="<%= article.title %>" />
+    <label class="mdl-textfield__label" for="title">Titel</label>
+  </div>
+
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%">
+    <input class="mdl-textfield__input" type="text" id="description" name="description"
+      value="<%= article.description %>" />
+    <label class="mdl-textfield__label" for="description">Beschreibung</label>
+  </div>
+
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
+    <textarea class="mdl-textfield__input" type="text" rows="20" id="markdown" name="markdown">
+<%= article.markdown %></textarea>
+    <label class="mdl-textfield__label" for="mardown">Blogpost (Markdown)</label>
+  </div>
+
 </div>
-
-<div
-  class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
-  style="width: 100%"
->
-  <input
-    class="mdl-textfield__input"
-    type="text"
-    id="description"
-    name="description"
-    value="<%= article.description %>"
-  />
-  <label class="mdl-textfield__label" for="description">Beschreibung</label>
-</div>
-
-<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%">
-  <textarea
-    class="mdl-textfield__input"
-    type="text"
-    rows="15"
-    id="markdown"
-    name="markdown"
-  >
-<%= article.markdown %></textarea
-  >
-  <label class="mdl-textfield__label" for="mardown">Blogpost (Markdown)</label>
-</div>
-
-
 <div class="mdl-dialog__actions">
   <button type="submit" class="mdl-button mdl-button--accent">Speichern
   </button>
