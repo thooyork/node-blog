@@ -1,11 +1,9 @@
 
 const express = require("express");
 const mongoose = require("mongoose");
-const articleRouter = require("./routes/articles");
 const Article = require("./models/article");
 const path = require("path");
 const app = express();
-const luxon = require("luxon");
 const cors = require("cors");
 const PORT = process.env.PORT || 5000;
 const favicon = require('serve-favicon');
@@ -40,17 +38,12 @@ app.use('/styles', express.static(path.join(__dirname, '/styles')));
 app.use('/static', express.static(path.join(__dirname, 'node_modules/material-design-lite/')));
 app.use('/assets', express.static(path.join(__dirname, '/assets')));
 
-app.get("/", async (req, res) => {
-    const articles = await Article.find().sort({ updatedAt: "desc" });
-    res.render("articles/index", { articles: articles, luxon: luxon })
-})
 
+app.use("/", require("./routes/root"));
 
-app.get("/404", (req, res) => {
-    res.status(404).render("404");
-});
+app.use("/404", require("./routes/404"));
 
-app.use("/articles", articleRouter);
+app.use("/articles", require("./routes/articles"));
 
 app.get("/*", (req, res) => {
     res.redirect("/404");
