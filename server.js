@@ -45,6 +45,10 @@ app.use("/404", require("./routes/404"));
 
 app.use("/articles", require("./routes/articles"));
 
+app.use("/register", require("./routes/register"));
+
+app.use("/login", require("./routes/login"));
+
 app.get("/*", (req, res) => {
     res.redirect("/404");
 });

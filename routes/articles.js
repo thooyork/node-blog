@@ -48,7 +48,6 @@ router.get("/pdf/:id", async (req, res) => {
 });
 
 router.post("/:id", async (req, res) => {
-
     let article = await Article.findById(req.params.id);
     article.title = req.body.title;
     article.description = req.body.description;

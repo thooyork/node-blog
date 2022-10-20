@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/material.min.css" />
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <title>Blog</title>
+</head>
+
+
+<body class="gradient-bg">
+    <div class="page-content">
+        <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__content">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Benutzer registrieren</h2>
+                </div>
+                <div style="padding:1rem">
+                    <form action="/register" method="POST">
+                        <%- include("_user_form_fields") %>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="/static/material.min.js"></script>
+
+</html>
