@@ -8,7 +8,7 @@ const cors = require("cors");
 const PORT = process.env.PORT || 5000;
 const favicon = require('serve-favicon');
 const errorHandler = require("./middleware/errorHandler");
-
+const verifyJWT = require("./middleware/verifyJWT");
 
 mongoose.connect("mongodb://localhost/blog", {
     useNewUrlParser: true,
@@ -32,22 +32,24 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(express.urlencoded({ extended: false }));
+
 app.use(favicon(path.join(__dirname, '/assets', 'favicon.ico')));
 
 app.use('/styles', express.static(path.join(__dirname, '/styles')));
 app.use('/static', express.static(path.join(__dirname, 'node_modules/material-design-lite/')));
 app.use('/assets', express.static(path.join(__dirname, '/assets')));
 
-
-app.use("/", require("./routes/root"));
-
+app.use("/login", require("./routes/login"));
+app.use("/register", require("./routes/register"));
 app.use("/404", require("./routes/404"));
 
+// TODO - handle JWT accessToken when generated from login route ...
+// app.use(verifyJWT);
+
+app.use("/", require("./routes/root"));
 app.use("/articles", require("./routes/articles"));
 
-app.use("/register", require("./routes/register"));
 
-app.use("/login", require("./routes/login"));
 
 app.get("/*", (req, res) => {
     res.redirect("/404");

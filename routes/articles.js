@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Article = require("./../models/article");
 const markdownpdf = require("markdown-pdf");
+// const verifyJWT = require("./../middleware/verifyJWT");
 
 
 router.get("/new", (req, res) => {
