@@ -120,6 +120,13 @@ img[alt="imgwide"] {
   width:100%;
 }
 
+.error {
+  text-align:center;
+  padding:1rem;
+  background-color: #CC0000;
+  color: #fFF;
+}
+
 @media screen and (max-width: 1280px) {
   .page-content {
     display: flex;

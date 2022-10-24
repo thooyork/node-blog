@@ -7,7 +7,12 @@ require("dotenv").config();
 
 
 router.get("/", (req, res) => {
-    res.render("users/login");
+    let user = new User({
+        name: "",
+        password: ""
+    });
+    var error = req.query.error;
+    res.render("users/login", { user: user, error: error });
 });
 
 router.post("/", async (req, res) => {
@@ -17,11 +22,10 @@ router.post("/", async (req, res) => {
     if (user) {
         const correctPassword = await bcrypt.compare(req.body.password, user.password);
         if (correctPassword) {
-
             const accessToken = jwt.sign(
                 { "username": user.name },
                 process.env.ACCESS_TOKEN_SECRET,
-                { expiresIn: "10m" }
+                { expiresIn: "1d" }
             );
 
             const refreshToken = jwt.sign(
@@ -33,20 +37,23 @@ router.post("/", async (req, res) => {
             user.refreshToken = refreshToken;
             user = await user.save()
 
-            // send refreshToken to user in an httpOnly (not available to Javascript) cookie !
-            res.set({ "Authorization": `Bearer ${accessToken}` });
+            // res.cookie("jwt", refreshToken, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
+            res.cookie("access_token", `Bearer ${accessToken}`, { httpOnly: true, expires: 0, secure: true, encode: String });
+            res.redirect("/articles");
 
-            res.cookie("jwt", refreshToken, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
-
-            // res.redirect("/");
-            res.json({ accessToken });
+            // respond accessToken to save by the client.
+            // res.json({ accessToken });
         } else {
             // TODO: schönes Errorhandling und Fehlerausgabe statt send()
-            res.status(403).send("wrong password");
+            const err = "Invalid User or Password";
+            res.status(403).redirect("/login?error=" + err);
+            // res.status(403).json({ "error": "Invalid username/password" });
+            // res.status(403).send("wrong password");
         }
     } else {
         // TODO: schönes Errorhandling und Fehlerausgabe statt send()
-        res.status(401).send("User doesn't exist!");
+        const err = "Invalid User or Password";
+        res.status(401).redirect("/login?error=" + err);
     }
 
 });

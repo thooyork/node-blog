@@ -20,6 +20,7 @@
                     <h2 class="mdl-card__title-text">Benutzer einloggen</h2>
                 </div>
                 <div style="padding:1rem">
+                    <!-- Form is send via ajax to handle the accessToken directly from response of that post and write it to sessionStorage for example -->
                     <form action="/login" method="POST">
                         <%- include("_user_form_fields") %>
                     </form>
@@ -27,10 +28,17 @@
                     Noch kein Konto ? Hier <a href="/register">registrieren</a>.
                 </div>
             </div>
+
+            <% if(error){ %>
+                <div class="error">
+                    <%=error%>
+                </div>
+                <% } %>
         </div>
     </div>
 </body>
 
 <script src="/static/material.min.js"></script>
+<!-- <script src="/assets/scripts/ajax.js"></script> -->
 
 </html>

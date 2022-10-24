@@ -4,7 +4,11 @@ const User = require("./../models/users");
 const bcrypt = require("bcrypt");
 
 router.get("/", (req, res) => {
-    res.render("users/register");
+    let user = new User({
+        name: "",
+        password: ""
+    });
+    res.render("users/register", { user: user });
 });
 
 router.post("/", async (req, res) => {
@@ -22,9 +26,12 @@ router.post("/", async (req, res) => {
         try {
             user = await user.save();
             // TODO: schönes Successhandling und Message statt send()
-            res.send(`New user ${user.name} created !`);
+            // res.send(`New user ${user.name} created !`);
+
+            res.render("users/login", { user: user });
+
         } catch (e) {
-            res.render("users/register");
+            res.render("users/register", { user: user });
         }
     } else {
         // TODO: schönes Errorhandling und Fehlerausgabe statt send(

@@ -2,8 +2,13 @@ const express = require("express");
 const router = express.Router();
 const Article = require("./../models/article");
 const markdownpdf = require("markdown-pdf");
-// const verifyJWT = require("./../middleware/verifyJWT");
+const luxon = require("luxon");
 
+
+router.get("/", async (req, res) => {
+    const articles = await Article.find().sort({ updatedAt: "desc" });
+    res.render("articles/index", { articles: articles, luxon: luxon })
+})
 
 router.get("/new", (req, res) => {
     res.render("articles/new", { article: new Article() })
@@ -16,14 +21,13 @@ router.get("/edit/:id", async (req, res) => {
 
 router.get("/delete/:id", async (req, res) => {
     const article = await Article.findByIdAndDelete(req.params.id);
-    res.redirect("/");
+    res.redirect("/articles");
 });
 
 router.get("/:slug", async (req, res) => {
     const article = await Article.findOne({ slug: req.params.slug });
 
     if (article === null) {
-        // res.render("404");
         res.redirect("/404");
     } else {
         res.render("articles/show", { article: article });
