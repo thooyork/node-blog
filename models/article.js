@@ -25,6 +25,12 @@ const articleSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    createdBy: {
+        type: String
+    },
+    updatedBy: {
+        type: String
+    },
     slug: {
         type: String,
         required: true,
@@ -46,7 +52,7 @@ articleSchema.pre("validate", function (next) {
         const config = { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] };
         this.sanitizedHtml = dompurify.sanitize(marked.parse(this.markdown), config);
     }
-    
+
     next();
 });
 

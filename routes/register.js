@@ -28,14 +28,13 @@ router.post("/", async (req, res) => {
             // TODO: schönes Successhandling und Message statt send()
             // res.send(`New user ${user.name} created !`);
 
-            res.render("users/login", { user: user });
+            res.render("users/login", { user: user, error: null });
 
         } catch (e) {
-            res.render("users/register", { user: user });
+            res.render("users/register", { user: user, error: e });
         }
     } else {
-        // TODO: schönes Errorhandling und Fehlerausgabe statt send(
-        res.status(409).send("User already exists");
+        res.render("users/register", { user: user, error: "User existiert bereits" });
     }
 
 });

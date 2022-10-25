@@ -127,6 +127,15 @@ img[alt="imgwide"] {
   color: #fff;
 }
 
+.creator {
+  font-weight: bold;
+  color: #999;
+}
+.editor {
+  font-weight: bold;
+  color: #999;
+}
+
 @media screen and (max-width: 1280px) {
   .page-content {
     display: flex;

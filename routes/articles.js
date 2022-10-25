@@ -5,6 +5,11 @@ const markdownpdf = require("markdown-pdf");
 const luxon = require("luxon");
 
 
+function parseJwt (token) {
+    return JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
+}
+
+
 router.get("/", async (req, res) => {
     const articles = await Article.find().sort({ updatedAt: "desc" });
     res.render("articles/index", { articles: articles, luxon: luxon })
@@ -53,11 +58,16 @@ router.get("/pdf/:id", async (req, res) => {
 });
 
 router.post("/:id", async (req, res) => {
+    const authHeader = req.headers['cookie'];
+    const token = authHeader.split(" ")[1];
+    const payload = parseJwt(token);
+
     let article = await Article.findById(req.params.id);
     article.title = req.body.title;
     article.description = req.body.description;
     article.markdown = req.body.markdown;
     article.updatedAt = Date.now();
+    article.updatedBy = payload?.username || "";
 
     try {
         article = await article.save();
@@ -68,10 +78,16 @@ router.post("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
+
+    const authHeader = req.headers['cookie'];
+    const token = authHeader.split(" ")[1];
+    const payload = parseJwt(token);
+
     let article = new Article({
         title: req.body.title,
         description: req.body.description,
-        markdown: req.body.markdown
+        markdown: req.body.markdown,
+        createdBy: payload?.username || ""
     });
 
     try {

@@ -51,7 +51,7 @@
 
           <span style="float:right; margin-top:1rem" class="pull-right date">erstellt: <%=
               luxon.DateTime.fromJSDate(article.createdAt).toRelativeCalendar() %>
-              <%= article.createdAt.toLocaleTimeString([], {hour: '2-digit' , minute:'2-digit'})%> h
+              <%= article.createdAt.toLocaleTimeString([], {hour: '2-digit' , minute:'2-digit'})%> h von: <span class="creator"><%= article.createdBy %></span>
           </span>
 
 
@@ -59,7 +59,7 @@
             <span style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <span style="float:right; margin-top:1rem" class="pull-right date">geändert: <%=
                 luxon.DateTime.fromJSDate(article.updatedAt).toRelativeCalendar() %>
-                <%= article.updatedAt.toLocaleTimeString([], {hour: '2-digit' , minute:'2-digit'})%> h
+                <%= article.updatedAt.toLocaleTimeString([], {hour: '2-digit' , minute:'2-digit'})%> h von: <span class="editor"><%= article.updatedBy %></span>
             </span>
             <% } %>
 
