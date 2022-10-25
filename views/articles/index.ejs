@@ -13,21 +13,21 @@
 
 <body class="gradient-bg">
   <div class="page-content">
-    <div style="width: 100%; padding: 1rem">
-      <div style="display: flex; align-items:start; justify-content:start; align-self:center;">
-        <img src="/assets/images/logo-transparent.png" class="logo" />
-        <h1 class="maintitle" style="display: inline-flex;">Blog</h1>
-      </div>
+    <div
+      style="display: flex; flex:80; align-items:start; justify-content:start; align-self:center; padding-left: 1rem;">
+      <img src="/assets/images/logo-transparent.png" class="logo" />
+      <h1 class="maintitle" style="display: inline-flex;">Blog</h1>
+    </div>
+    <div style="display: flex; flex: 20; justify-content:end; padding-right:1rem">
       <a href="/articles/new"
-        class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-new">
+        class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect mdl-button--colored button-new">
         <i class="material-icons">add</i>
       </a>
+      <a href="/logout"
+        class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect mdl-button--colored button-logout">
+        <i class="material-icons">logout</i>
+      </a>
     </div>
-
-    <a href="/logout"
-      class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
-      <i class="material-icons">logout</i>
-    </a>
 
     <% articles.forEach(article=> { %>
 

@@ -24,9 +24,9 @@ h6 {
 .maintitle {
   color: rgb(187, 187, 187);
   font-family: "Montserrat", sans-serif;
-  width:calc(100% - 150px);
-  padding:0;
-  margin:0 0 2rem 0;
+  width: calc(100% - 150px);
+  padding: 0;
+  margin: 0 0 2rem 0;
 }
 
 .logo {
@@ -49,12 +49,12 @@ h6 {
   /* background: #FF9900; */
   /* background-color:red; */
   /* background: url("./../assets/demos/welcome_card.jpg") center / cover; */
-  
+
   background-color: #d1ecf1;
 }
 
 .mdl-card__title-text {
-  width:calc(100% - 100px);
+  width: calc(100% - 100px);
   font-family: "Montserrat", sans-serif;
   /* color: rgb(109, 109, 109); */
   color: #0c5460;
@@ -65,14 +65,14 @@ h6 {
 }
 
 .button-new {
-  position: fixed;
-  z-index: 99;
-  right: 27rem;
-  top: 4rem;
   color: #01544e !important;
   background-color: #02d9c4 !important;
-  /* color: #0c5460 !important;
-  background-color: #d1ecf1 !important; */
+}
+
+.button-logout {
+  color: #333 !important;
+  background-color: #6d6d6d !important;
+  margin-left: 1rem;
 }
 
 .date {
@@ -117,14 +117,14 @@ h6 {
 }
 
 img[alt="imgwide"] {
-  width:100%;
+  width: 100%;
 }
 
 .error {
-  text-align:center;
-  padding:1rem;
-  background-color: #CC0000;
-  color: #fFF;
+  text-align: center;
+  padding: 1rem;
+  background-color: #cc0000;
+  color: #fff;
 }
 
 @media screen and (max-width: 1280px) {
@@ -136,9 +136,9 @@ img[alt="imgwide"] {
     padding: 2rem;
   }
 
-  .button-new {
+  /* .button-new {
     right: 3rem;
-  }
+  } */
 }
 
 @media screen and (max-width: 960px) {

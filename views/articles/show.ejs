@@ -13,23 +13,29 @@
 
 <body class="gradient-bg">
   <div class="page-content">
-
-    <div style="width: 100%; padding: 1rem">
-      <div style="display: flex; align-items:center start; justify-content:start; align-self:center">
-        <a href="/articles"><img src="/assets/images/logo-transparent.png" class="logo" /></a>
-        <h1 class="maintitle" style="display: inline-flex">Blogpost</h1>
-      </div>
-      <a href="/articles" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-new">
+    <div
+      style="display: flex; flex:90; align-items:start; justify-content:start; align-self:center; padding-left: 1rem;">
+      <img src="/assets/images/logo-transparent.png" class="logo" />
+      <h1 class="maintitle" style="display: inline-flex;">Blogpost</h1>
+    </div>
+    <div style="display: flex; flex: 10; justify-content:end; padding-right:1rem">
+      <a href="/articles"
+        class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect mdl-button--colored button-new">
         <i class="material-icons">arrow_back</i>
       </a>
+      <a href="/logout"
+        class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect mdl-button--colored button-logout">
+        <i class="material-icons">logout</i>
+      </a>
     </div>
-
 
     <div class="demo-card-wide mdl-card mdl-shadow--2dp">
       <div class="mdl-card__content">
         <div class="mdl-card__title">
-            <h2 class="mdl-card__title-text"><%= article.title %></h2>
-          </div>
+          <h2 class="mdl-card__title-text">
+            <%= article.title %>
+          </h2>
+        </div>
         <div class="mdl-card__supporting-text" style="width:calc(100% - 150px)">
           <%= article.description %>
         </div>
