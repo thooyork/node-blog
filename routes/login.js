@@ -45,14 +45,10 @@ router.post("/", async (req, res) => {
             // respond accessToken to save by the client.
             // res.json({ accessToken });
         } else {
-            // TODO: schönes Errorhandling und Fehlerausgabe statt send()
             const err = "Invalid User or Password";
             res.status(403).redirect("/login?error=" + err);
-            // res.status(403).json({ "error": "Invalid username/password" });
-            // res.status(403).send("wrong password");
         }
     } else {
-        // TODO: schönes Errorhandling und Fehlerausgabe statt send()
         const err = "Invalid User or Password";
         res.status(401).redirect("/login?error=" + err);
     }
