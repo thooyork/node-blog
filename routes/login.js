@@ -9,6 +9,7 @@ require("dotenv").config();
 router.get("/", (req, res) => {
     let user = new User({
         name: "",
+        email: "",
         password: ""
     });
     var error = req.query.error;
@@ -17,19 +18,19 @@ router.get("/", (req, res) => {
 
 router.post("/", async (req, res) => {
 
-    let user = await User.findOne({ name: req.body.name });
+    let user = await User.findOne({ email: req.body.email });
 
     if (user) {
         const correctPassword = await bcrypt.compare(req.body.password, user.password);
         if (correctPassword) {
             const accessToken = jwt.sign(
-                { "username": user.name },
+                { "user_email": user.email, "username": user.name },
                 process.env.ACCESS_TOKEN_SECRET,
                 { expiresIn: "1d" }
             );
 
             const refreshToken = jwt.sign(
-                { "username": user.name },
+                { "user_email": user.email, "username": user.name },
                 process.env.REFRESH_TOKEN_SECRET,
                 { expiresIn: "1d" }
             );

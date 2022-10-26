@@ -11,7 +11,7 @@ const errorHandler = require("./middleware/errorHandler");
 const verifyJWT = require("./middleware/verifyJWT");
 const bodyParser = require("body-parser");
 
-mongoose.connect("mongodb://localhost/blog", {
+mongoose.connect(process.env.MONGO_DB_PATH, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });

@@ -5,10 +5,11 @@ const bcrypt = require("bcrypt");
 
 router.get("/", (req, res) => {
     let user = new User({
+        email: "",
         name: "",
         password: ""
     });
-    res.render("users/register", { user: user });
+    res.render("users/register", { user: user, error: null });
 });
 
 router.post("/", async (req, res) => {
@@ -16,11 +17,12 @@ router.post("/", async (req, res) => {
     const hashedPwd = await bcrypt.hash(req.body.password, 10);
 
     let user = new User({
-        name: req.body.name,
+        name: req.body.name || req.body.email,
+        email: req.body.email,
         password: hashedPwd
     });
 
-    const userExists = await User.findOne({ name: user.name });
+    const userExists = await User.findOne({ email: user.email });
 
     if (!userExists) {
         try {
