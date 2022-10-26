@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 5000;
 const favicon = require('serve-favicon');
 const errorHandler = require("./middleware/errorHandler");
 const verifyJWT = require("./middleware/verifyJWT");
+const clearCacheAfterLogout = require("./middleware/clearCacheAfterLogout")
 const bodyParser = require("body-parser");
 
 mongoose.connect(process.env.MONGO_DB_PATH, {
@@ -46,10 +47,9 @@ app.use("/login", require("./routes/login"));
 app.use("/register", require("./routes/register"));
 app.use("/404", require("./routes/404"));
 app.use("/logout", require("./routes/logout"));
-
 app.use("/", require("./routes/root"));
 
-// TODO - handle JWT accessToken when generated from login route ...
+app.use(clearCacheAfterLogout);
 app.use(verifyJWT);
 app.use("/articles", require("./routes/articles"));
 

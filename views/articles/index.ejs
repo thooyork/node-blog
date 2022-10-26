@@ -13,79 +13,124 @@
 
 <body class="gradient-bg">
   <div class="page-content">
-    <div
-      style="display: flex; flex:80; align-items:start; justify-content:start; align-self:center; padding-left: 1rem;">
-      <img src="/assets/images/logo-transparent.png" class="logo" />
-      <h1 class="maintitle" style="display: inline-flex;">Blog</h1>
-    </div>
-    <div style="display: flex; flex: 20; justify-content:end; padding-right:1rem">
-      <a href="/articles/new"
-        class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect mdl-button--colored button-new">
-        <i class="material-icons">add</i>
-      </a>
-      <a href="/logout"
-        class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect mdl-button--colored button-logout">
-        <i class="material-icons">logout</i>
-      </a>
-    </div>
-
-    <% articles.forEach(article=> { %>
-
-      <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-        <div class="mdl-card__content card-minHeight" style="cursor:pointer"
-          onclick="window.location.href = '/articles/<%= article.slug %>'">
-          <div class="mdl-card__title">
-            <h2 class="mdl-card__title-text">
-              <%= article.title.length <=78 ? article.title : article.title.substring(0,78).concat(" ...") %>
-            </h2>
-          </div>
-          <div class="mdl-card__supporting-text">
-            <%= article.description %>
-          </div>
-        </div>
-        <div class="mdl-card__actions mdl-card--border">
-          <a href="/articles/<%= article.slug %>"
-            class="mdl-button mdl-button--colored mdl-button--fmx mdl-js-button mdl-js-ripple-effect pull-left">
-            Lesen ...
-          </a>
-
-          <span style="float:right; margin-top:1rem" class="pull-right date">erstellt: <%=
-              luxon.DateTime.fromJSDate(article.createdAt).toRelativeCalendar() %>
-              <%= article.createdAt.toLocaleTimeString([], {hour: '2-digit' , minute:'2-digit'})%> h von: <span class="creator"><%= article.createdBy %></span>
-          </span>
-
-
-          <% if(Date.parse(article.createdAt) !==Date.parse(article.updatedAt)) { %>
-            <span style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span style="float:right; margin-top:1rem" class="pull-right date">geändert: <%=
-                luxon.DateTime.fromJSDate(article.updatedAt).toRelativeCalendar() %>
-                <%= article.updatedAt.toLocaleTimeString([], {hour: '2-digit' , minute:'2-digit'})%> h von: <span class="editor"><%= article.updatedBy %></span>
-            </span>
-            <% } %>
-
-
-        </div>
-        <div class="mdl-card__menu">
-          <a href="/articles/edit/<%= article.id %>"
-            class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-            <i class="material-icons">edit</i>
-          </a>
-
-          <a href="#" onclick="openDialog('dialog_<%=article.id%>')"
-            class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-            <i class="material-icons">delete</i>
-          </a>
-
-          <a href="articles/pdf/<%= article.id %>"
-            class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-            <i class="material-icons">cloud_download</i>
-          </a>
-
-          <%- include("_modal", {article: article}) %>
-        </div>
+    <div style="display: flex; width:100%">
+      <div
+        style="display: flex; flex:80; align-items:start; justify-content:start; align-self:center; padding-left: 1rem;">
+        <img src="/assets/images/logo-transparent.png" class="logo" />
+        <h1 class="maintitle" style="display: inline-flex;">Blog</h1>
       </div>
 
-      <% })%>
+      <div style="display: flex; flex: 20; justify-content:end; padding-right:1rem">
+        <a href="/articles/new"
+          class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect mdl-button--colored button-new">
+          <i class="material-icons">add</i>
+        </a>
+        <a href="/logout"
+          class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect mdl-button--colored button-logout">
+          <i class="material-icons">logout</i>
+        </a>
+      </div>
+    </div>
+
+
+    <div style="padding: 0.5rem 2rem; background-color:#FCFCFC">
+      <form id="searchForm" action="/articles?search=hallo" method="GET">
+        <div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="search" name="search" value="<%= search %>" />
+            <label class="mdl-textfield__label" for="email">Suche</label>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <% if(articles.length===0 && search ) {%>
+      <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+        <div class="mdl-card__content">
+          <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text"> Nicht gefunden ☹️ </h2>
+          </div>
+          <div
+            style="display: flex; flex-direction: column; align-items:center; justify-content:start; align-self:center; padding:5rem 1rem">
+
+            <img src="/assets/images/404.jpeg" width="150" style="" />
+
+            <p style="text-align:center">
+              Zum Suchbegriff <b>
+                <%=search%>
+              </b> wurden keine Atikel gefunden !<br />
+              <br />Vielleicht am besten nochmal zur <a href="/">Startseite</a> zurück ?
+            </p>
+
+          </div>
+
+        </div>
+      </div>
+      <%}%>
+
+        <% articles.forEach(article=> { %>
+
+          <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__content card-minHeight" style="cursor:pointer"
+              onclick="window.location.href = '/articles/<%= article.slug %>'">
+              <div class="mdl-card__title">
+                <h2 class="mdl-card__title-text">
+                  <%= article.title.length <=78 ? article.title : article.title.substring(0,78).concat(" ...") %>
+                </h2>
+              </div>
+              <div class="mdl-card__supporting-text">
+                <%= article.description %>
+              </div>
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+              <a href="/articles/<%= article.slug %>"
+                class="mdl-button mdl-button--colored mdl-button--fmx mdl-js-button mdl-js-ripple-effect pull-left">
+                Lesen ...
+              </a>
+
+              <span style="float:right; margin-top:1rem" class="pull-right date">erstellt: <%=
+                  luxon.DateTime.fromJSDate(article.createdAt).toRelativeCalendar() %>
+                  <%= article.createdAt.toLocaleTimeString([], {hour: '2-digit' , minute:'2-digit'})%> h von: <span
+                      class="creator">
+                      <%= article.createdBy %>
+                    </span>
+              </span>
+
+
+              <% if(Date.parse(article.createdAt) !==Date.parse(article.updatedAt)) { %>
+                <span style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span style="float:right; margin-top:1rem" class="pull-right date">geändert: <%=
+                    luxon.DateTime.fromJSDate(article.updatedAt).toRelativeCalendar() %>
+                    <%= article.updatedAt.toLocaleTimeString([], {hour: '2-digit' , minute:'2-digit'})%> h von: <span
+                        class="editor">
+                        <%= article.updatedBy %>
+                      </span>
+                </span>
+                <% } %>
+
+
+            </div>
+            <div class="mdl-card__menu">
+              <a href="/articles/edit/<%= article.id %>"
+                class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                <i class="material-icons">edit</i>
+              </a>
+
+              <a href="#" onclick="openDialog('dialog_<%=article.id%>')"
+                class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                <i class="material-icons">delete</i>
+              </a>
+
+              <a href="articles/pdf/<%= article.id %>"
+                class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                <i class="material-icons">cloud_download</i>
+              </a>
+
+              <%- include("_modal", {article: article}) %>
+            </div>
+          </div>
+
+          <% })%>
   </div>
 </body>
 <script src="/static/material.min.js"></script>
@@ -102,6 +147,34 @@
       dialog.close();
     });
   };
+
+
+  function debounce(cb, interval, immediate) {
+    var timeout;
+
+    return function () {
+      var context = this, args = arguments;
+      var later = function () {
+        timeout = null;
+        if (!immediate) cb.apply(context, args);
+      };
+
+      var callNow = immediate && !timeout;
+
+      clearTimeout(timeout);
+      timeout = setTimeout(later, interval);
+
+      if (callNow) cb.apply(context, args);
+    };
+  };
+
+
+  const searchInput = document.querySelector("#search");
+  searchInput.onkeyup = debounce(() => {
+    const form = document.querySelector("#searchForm");
+    searchForm.submit();
+  }, 500);
+
 </script>
 
 </html>

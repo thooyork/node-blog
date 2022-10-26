@@ -5,14 +5,21 @@ const markdownpdf = require("markdown-pdf");
 const luxon = require("luxon");
 
 
-function parseJwt (token) {
+function parseJwt(token) {
     return JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
 }
 
-
 router.get("/", async (req, res) => {
-    const articles = await Article.find().sort({ updatedAt: "desc" });
-    res.render("articles/index", { articles: articles, luxon: luxon })
+    var search = req.query.search;
+    let articles;
+    if (search) {
+        // this only works because there was created an index for searching all String type fields like so:
+        // db.collection.createIndex({ "$**": "text" },{ name: "TextIndex" })
+        articles = await Article.find({ "$text" : { "$search": search } }).sort({ updatedAt: "desc" });
+    } else {
+        articles = await Article.find().sort({ updatedAt: "desc" });
+    }
+    res.render("articles/index", { articles: articles, luxon: luxon, search: search })
 })
 
 router.get("/new", (req, res) => {
@@ -38,6 +45,7 @@ router.get("/:slug", async (req, res) => {
         res.render("articles/show", { article: article });
     }
 });
+
 
 router.get("/pdf/:id", async (req, res) => {
     const article = await Article.findById(req.params.id);
